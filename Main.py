@@ -21,3 +21,18 @@ class SystemScanner(object):
                 return f"{bytes:.2f} {unit}{suffix}"
             bytes /= factor
     
+    def system_info(self):
+        uname = platform.uname()
+        boot_time_stamp = psutil.boot_time()
+        bt = datetime.fromtimestamp(boot_time_stamp)
+        data = {
+            "System":       uname.system,
+            "Node Name":    uname.node,
+            "Release":      uname.release,
+            "Version":      uname.version,
+            "Architecture": uname.machine,
+            "Processor":    uname.processor,
+            "Boot Time": str(f"{bt.year}/{bt.month}/{bt.day} {bt.hour}:{bt.minute}:{bt.second}")
+        }
+        return data
+    
