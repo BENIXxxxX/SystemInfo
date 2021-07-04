@@ -36,3 +36,16 @@ class SystemScanner(object):
         }
         return data
     
+    def cpu_info(self):
+        cpu_freq = psutil.cpu_freq()
+        data = {
+            "Physical Cores":   psutil.cpu_count(logical=False),
+            "Total Cores":      psutil.cpu_count(logical=True),
+            "Max Frequency":    str(f"{cpu_freq.max:.2f} Mhz"),
+            "Min Frequency":    str(f"{cpu_freq.min:.2f} Mhz"),
+            "Total Usage":      str(f"{psutil.cpu_percent()}%")
+        }
+        return data
+    
+    
+    
