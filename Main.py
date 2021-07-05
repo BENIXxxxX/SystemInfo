@@ -108,3 +108,51 @@ class SystemScanner(object):
         }
         return data
     
+class GUI(object):
+    def __init__(self, master):
+        spec = SystemScanner()
+        self.methods = {
+            "sys":      spec.system_info(),
+            "cpu":      spec.cpu_info(),
+            "ram":      spec.ram_info(),
+            "gpu":      spec.gpu_info(),
+            "disk":     spec.disk_info(),
+            "network":  spec.network_info()
+        }
+
+        frame = Frame(master)
+        frame.grid()
+        tabControl = ttk.Notebook(root)
+        tabControl.configure(width=485, height=290)
+
+        self.system_tab = ttk.Frame(tabControl)
+        tabControl.add(self.system_tab, text="System")
+        tabControl.grid()
+
+        self.cpu_tab = ttk.Frame(tabControl)
+        tabControl.add(self.cpu_tab, text="CPU")
+        tabControl.grid()
+
+        self.ram_tab = ttk.Frame(tabControl)
+        tabControl.add(self.ram_tab, text="RAM")
+        tabControl.grid()
+
+        self.gpu_tab = ttk.Frame(tabControl)
+        tabControl.add(self.gpu_tab, text="GPU")
+        tabControl.grid()
+
+        self.disk_tab = ttk.Frame(tabControl)
+        tabControl.add(self.disk_tab, text="Disk")
+        tabControl.grid()
+
+        self.network_tab = ttk.Frame(tabControl)
+        tabControl.add(self.network_tab, text="Network")
+        tabControl.grid()
+
+        self.style = ttk.Style(frame)
+        self.style.configure("My.TLabel", font=("Arial", 12, "bold"))
+        self.style.configure("Bold.TLabel", font=("Arial", 10, "bold"))
+        self.style.configure("Title.TLabel", font=("Arial", 15, "bold"))
+
+        self.widgets()
+    
