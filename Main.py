@@ -71,4 +71,24 @@ class SystemScanner(object):
             data["UUID"] = gpu.uuid
         return data
     
+    def disk_info(self):
+        drive = psutil.disk_partitions()[0]
+        disk_io = psutil.disk_io_counters()
+        try:
+            partition_usage = psutil.disk_usage(drive.mountpoint)
+        except PermissionError:
+            pass
+        data = {
+            "Device":       drive.device,
+            "Mountpoint":   drive.mountpoint,
+            "File System":  drive.fstype,
+            "Total Size":   self.get_size(partition_usage.total),
+            "Used":         self.get_size(partition_usage.used),
+            "Free":         self.get_size(partition_usage.free),
+            "Percentage":   str(f"{partition_usage.percent}%"),
+            "Total Read":   self.get_size(disk_io.read_bytes),
+            "Total Write":  self.get_size(disk_io.write_bytes)
+        }
+        return data
+    
     
