@@ -91,4 +91,20 @@ class SystemScanner(object):
         }
         return data
     
+    def network_info(self):
+        print("\nWill now do a scan, this won't take long...\n")
+        scanner = psutil.net_if_addrs()
+        interfaces = []
+        for interface_name, _ in scanner.items():
+            interfaces.append(str(interface_name))
+        net_io = psutil.net_io_counters()
+        speed = speedtest.Speedtest()
+        data = {
+            "Interface": str(interfaces[0]),
+            "Download": str(f"{round(speed.download() / 1_000_000, 2)} Mbps"),
+            "Upload":   str(f"{round(speed.upload() / 1_000_000, 2)} Mbps"),
+            "Total Bytes Sent": str(self.get_size(net_io.bytes_sent)),
+            "Total Bytes Received": str(self.get_size(net_io.bytes_recv))
+        }
+        return data
     
