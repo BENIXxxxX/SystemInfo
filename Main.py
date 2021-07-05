@@ -47,5 +47,15 @@ class SystemScanner(object):
         }
         return data
     
+    def ram_info(self):
+        svmem = psutil.virtual_memory()
+        data = {
+            "Total":        self.get_size(svmem.total),
+            "Available":    self.get_size(svmem.available),
+            "Used":         self.get_size(svmem.used),
+            "Percentage":   str(f"{svmem.percent}%")
+        }
+        return data
+    
     
     
