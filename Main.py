@@ -57,5 +57,18 @@ class SystemScanner(object):
         }
         return data
     
+    def gpu_info(self):
+        gpus = GPUtil.getGPUs()
+        data = {}
+        for gpu in gpus:
+            data["ID"] = gpu.id
+            data["Name"] = gpu.name
+            data["Load"] = f"{gpu.load*100}%"
+            data["Free"] = f"{gpu.memoryFree} MB"
+            data["Used"] = f"{gpu.memoryUsed} MB"
+            data["Total"] = f"{gpu.memoryTotal} MB"
+            data["Temp"] = f"{gpu.temperature} °C"
+            data["UUID"] = gpu.uuid
+        return data
     
     
