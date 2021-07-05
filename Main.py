@@ -8,7 +8,7 @@ from tkinter import ttk
 from datetime import datetime
 
 class SystemScanner(object):
-    def get_size(self, bytes, suffix="8"):
+    def get_size(self, bytes, suffix="B"):
         """
         Scale bytes to its proper format
         e.g:
