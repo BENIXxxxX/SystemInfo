@@ -204,3 +204,49 @@ class GUI(object):
         sys_boot_label.grid(column=0, row=7, sticky=W)
         sys_boot_spec = Label(sys_label_frame, text=self.methods["sys"]["Boot Time"], style="Bold.TLabel")
         sys_boot_spec.grid(column=1, row=7, sticky=W, padx=10, pady=2)
+
+
+        # CPU Tab
+        cpu_frame_top_label = LabelFrame(self.cpu_tab, width=480, height=50)
+        cpu_frame_top_label.grid(column=0, row=0)
+        cpu_frame_top_label.grid_propagate(0)
+        
+        cpu_system_top_label = Label(cpu_frame_top_label, text="CPU", style="Title.TLabel")
+        cpu_system_top_label.grid(column=1, row=0, columnspan=3, sticky=N)
+
+        
+        cpu_label_frame = LabelFrame(self.cpu_tab, width=480, height=240)
+        cpu_label_frame.grid(column=0, row=1)
+        cpu_label_frame.grid_propagate(0)
+
+        cpu_core_label = Label(cpu_label_frame, text="Physical Cores: ", style="My.TLabel")
+        cpu_core_label.grid(column=0, row=1, sticky=W)
+        cpu_core_spec = Label(cpu_label_frame, text=self.methods["cpu"]["Physical Cores"], style="Bold.TLabel")
+        cpu_core_spec.grid(column=1, row=1, sticky=W, padx=10)
+
+        cpu_total_label = Label(cpu_label_frame, text="Total Cores: ", style="My.TLabel")
+        cpu_total_label.grid(column=0, row=2, sticky=W)
+        cpu_total_spec = Label(cpu_label_frame, text=self.methods["cpu"]["Total Cores"], style="Bold.TLabel")
+        cpu_total_spec.grid(column=1, row=2, sticky=W, padx=10)
+        
+        cpu_max_label = Label(cpu_label_frame, text="Max Frequency: ", style="My.TLabel")
+        cpu_max_label.grid(column=0, row=3, sticky=W)
+        cpu_max_spec = Label(cpu_label_frame, text=self.methods["cpu"]["Max Frequency"], style="Bold.TLabel")
+        cpu_max_spec.grid(column=1, row=3, sticky=W, padx=10)
+
+        cpu_min_label = Label(cpu_label_frame, text="Min Frequency: ", style="My.TLabel")
+        cpu_min_label.grid(column=0, row=4, sticky=W)
+        cpu_min_spec = Label(cpu_label_frame, text=self.methods["cpu"]["Min Frequency"], style="Bold.TLabel")
+        cpu_min_spec.grid(column=1, row=4, sticky=W, padx=10)
+
+        cpu_cur_label = Label(cpu_label_frame, text="Current Frequency: ", style="My.TLabel")
+        cpu_cur_label.grid(column=0, row=5, sticky=W)
+        cpu_cur_spec = Label(cpu_label_frame, text=self.methods["cpu"]["Current Frequency"], style="Bold.TLabel")
+        cpu_cur_spec.grid(column=1, row=5, sticky=W, padx=10)
+
+        cpu_t_usage_label = Label(cpu_label_frame, text="Total Usage: ", style="My.TLabel")
+        cpu_t_usage_label.grid(column=0, row=6, sticky=W)
+        cpu_t_usage_spec = Label(cpu_label_frame, text=self.methods["cpu"]["Total Usage"], style="Bold.TLabel")
+        cpu_t_usage_spec.grid(column=1, row=6, sticky=W, padx=10)
+
+
