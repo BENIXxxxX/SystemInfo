@@ -386,3 +386,40 @@ class GUI(object):
         disk_t_write_label.grid(column=0, row=9, sticky=W)
         disk_t_write_spec = Label(disk_label_frame, text=self.methods["disk"]["Total Write"], style="Bold.TLabel")
         disk_t_write_spec.grid(column=1, row=9, sticky=W, padx=10)
+
+        # Network Tab
+        net_frame_top_label = LabelFrame(self.network_tab, width=480, height=50)
+        net_frame_top_label.grid(column=0, row=0)
+        net_frame_top_label.grid_propagate(0)
+
+        net_system_top_label = Label(net_frame_top_label, text="NETWORK", style="Title.TLabel")
+        net_system_top_label.grid(column=1, row=0, columnspan=3, sticky=N)
+
+        net_label_frame = LabelFrame(self.network_tab, width=480, height=240)
+        net_label_frame.grid(columnspan=0, row=1)
+        net_label_frame.grid_propagate(0)
+
+        net_interface_label = Label(net_label_frame, text="Interface: ", style="My.TLabel")
+        net_interface_label.grid(column=0, row=0, sticky=W)
+        net_interface_spec = Label(net_label_frame, text=self.methods["net"]["Interface"], style="Bold.TLabel")
+        net_interface_spec.grid(column=1, row=0, sticky=W, padx=10)
+
+        net_download_label = Label(net_label_frame, text="Download: ", style="My.TLabel")
+        net_download_label.grid(column=0, row=1, sticky=W)
+        net_download_spec = Label(net_label_frame, text=self.methods["net"]["Download"], style="Bold.TLabel")
+        net_download_spec.grid(column=1, row=1, sticky=W, padx=10)
+
+        net_upload_label = Label(net_label_frame, text="Upload: ", style="My.TLabel")
+        net_upload_label.grid(column=0, row=2, sticky=W)
+        net_upload_spec = Label(net_label_frame, text=self.methods["net"]["Upload"], style="Bold.TLabel")
+        net_upload_spec.grid(column=1, row=2, sticky=W)
+
+        net_t_sent_label = Label(net_label_frame, text="Total Bytes Sent: ", style="My.TLabel")
+        net_t_sent_label.grid(column=0, row=3, sticky=W)
+        net_t_sent_spec = Label(net_label_frame, text=self.methods["net"]["Total Bytes Sent"], style="Bold.TLabel")
+        net_t_sent_spec.grid(column=1, row=3, sticky=W, padx=10)
+
+        net_t_recv_label = Label(net_label_frame, text="Total Bytes Received: ", style="My.TLabel")
+        net_t_recv_label.grid(column=0, row=4, sticky=W)
+        net_t_recv_spec = Label(net_label_frame, text=self.methods["net"]["Total Bytes Received"], style="Bold.TLabel")
+        net_t_recv_spec.grid(column=1, row=4, sticky=W, padx=10)
