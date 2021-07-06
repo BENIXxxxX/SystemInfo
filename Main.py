@@ -250,3 +250,36 @@ class GUI(object):
         cpu_t_usage_spec.grid(column=1, row=6, sticky=W, padx=10)
 
 
+        # RAM Tab
+        ram_frame_top_label = LabelFrame(self.ram_tab, width=480, height=50)
+        ram_frame_top_label.grid(column=0, row=0)
+        ram_frame_top_label.grid_propagate(0)
+        
+        ram_system_top_label = Label(ram_frame_top_label, text="RAM", style="Title.TLabel")
+        ram_system_top_label.grid(column=1, row=0, columnspan=3, sticky=N)
+
+        ram_label_frame = LabelFrame(self.ram_tab, width=480, height=240)
+        ram_label_frame.grid(column=0, row=1)
+        ram_label_frame.grid_propagate(0)
+
+
+        ram_total_label = Label(ram_label_frame, text="Total: ", style="My.TLabel")
+        ram_total_label.grid(column=0, row=1, sticky=W)
+        ram_total_spec = Label(ram_label_frame, text=self.methods["ram"]["Total"], style="Bold.TLabel")
+        ram_total_spec.grid(column=1, row=1, sticky=W, padx=10)
+
+        ram_avail_label = Label(ram_label_frame, text="Available: ", style="My.TLabel")
+        ram_avail_label.grid(column=0, row=2, sticky=W)
+        ram_avail_spec = Label(ram_label_frame, text=self.methods["ram"]["Available"], style="Bold.TLabel")
+        ram_avail_spec.grid(column=1, row=2, sticky=W, padx=10)
+        
+        ram_used_label = Label(ram_label_frame, text="Used: ", style="My.TLabel")
+        ram_used_label.grid(column=0, row=3, sticky=W)
+        ram_used_spec = Label(ram_label_frame, text=self.methods["ram"]["Used"], style="Bold.TLabel")
+        ram_used_spec.grid(column=1, row=3, sticky=W, padx=10)
+
+        ram_per_label = Label(ram_label_frame, text="Percentage: ", style="My.TLabel")
+        ram_per_label.grid(column=0, row=4, sticky=W)
+        ram_per_spec = Label(ram_label_frame, text=self.methods["ram"]["Percentage"], style="Bold.TLabel")
+        ram_per_spec.grid(column=1, row=4, sticky=W, padx=10)
+
