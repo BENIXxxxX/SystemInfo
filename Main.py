@@ -156,3 +156,51 @@ class GUI(object):
 
         self.widgets()
     
+    def widgets(self):
+        # System Tab
+        sys_frame_top_label = LabelFrame(self.system_tab, width=480, height=50)
+        sys_frame_top_label.grid(column=0, row=0)
+        sys_frame_top_label.grid_propagate(0)
+
+        sys_top_label = Label(sys_frame_top_label, text="SYSTEM SPECIFICATIONS", style="Title.TLabel")
+        sys_top_label.grid(column=1, row=0, columnspan=3, sticky=E)
+
+
+        sys_label_frame = LabelFrame(self.system_tab, width=480, height=240)
+        sys_label_frame.grid(column=0, row=1)
+        sys_label_frame.grid_propagate(0)
+                
+        sys_system_label = Label(sys_label_frame, text="System: ", style="My.TLabel")
+        sys_system_label.grid(column=0, row=1, sticky=W)
+        sys_system_spec = Label(sys_label_frame, text=self.methods["sys"]["System"], style="Bold.TLabel")
+        sys_system_spec.grid(column=1, row=1, sticky=W, padx=10, pady=2)
+
+        sys_node_label = Label(sys_label_frame, text="Node Name: ", style="My.TLabel")
+        sys_node_label.grid(column=0, row=2, sticky=W)
+        sys_node_spec = Label(sys_label_frame, text=self.methods["sys"]["Node Name"], style="Bold.TLabel")
+        sys_node_spec.grid(column=1, row=2, sticky=W, padx=10, pady=2)
+        
+        sys_rel_label = Label(sys_label_frame, text="Release: ", style="My.TLabel")
+        sys_rel_label.grid(column=0, row=3, sticky=W)
+        sys_rel_spec = Label(sys_label_frame, text=self.methods["sys"]["Release"], style="Bold.TLabel")
+        sys_rel_spec.grid(column=1, row=3, sticky=W, padx=10, pady=2)
+
+        sys_ver_label = Label(sys_label_frame, text="Version: ", style="My.TLabel")
+        sys_ver_label.grid(column=0, row=4, sticky=W)
+        sys_ver_label = Label(sys_label_frame, text=self.methods["sys"]["Version"], style="Bold.TLabel")
+        sys_ver_label.grid(column=1, row=4, sticky=W, padx=10, pady=2)
+
+        sys_arch_label = Label(sys_label_frame, text="Architecture: ", style="My.TLabel")
+        sys_arch_label.grid(column=0, row=5, sticky=W)
+        sys_arch_spec = Label(sys_label_frame, text=self.methods["sys"]["Architecture"], style="Bold.TLabel")
+        sys_arch_spec.grid(column=1, row=5, sticky=W, padx=10, pady=2)
+
+        sys_pro_label = Label(sys_label_frame, text="Processor: ", style="My.TLabel")
+        sys_pro_label.grid(column=0, row=6, sticky=W)
+        sys_pro_spec = Label(sys_label_frame, text=self.methods["sys"]["Processor"], style="Bold.TLabel")
+        sys_pro_spec.grid(column=1, row=6, sticky=W, padx=10, pady=2)
+
+        sys_boot_label = Label(sys_label_frame, text="Boot Time: ", style="My.TLabel")
+        sys_boot_label.grid(column=0, row=7, sticky=W)
+        sys_boot_spec = Label(sys_label_frame, text=self.methods["sys"]["Boot Time"], style="Bold.TLabel")
+        sys_boot_spec.grid(column=1, row=7, sticky=W, padx=10, pady=2)
