@@ -329,3 +329,60 @@ class GUI(object):
         gpu_uuid_label.grid(column=0, row=7, sticky=W)
         gpu_uuid_spec = Label(gpu_label_frame, text=self.methods["gpu"]["UUID"], style="Bold.TLabel")
         gpu_uuid_spec.grid(column=1, row=7, sticky=W, padx=10)
+
+        # Disk Tab
+        disk_frame_top_label = LabelFrame(self.disk_tab, width=480, height=50)
+        disk_frame_top_label.grid(column=0, row=0)
+        disk_frame_top_label.grid_propagate(0)
+
+        disk_system_top_label = Label(disk_frame_top_label, text="DISK", style="Title.TLabel")
+        disk_system_top_label.grid(column=1, row=0, columnspan=3, sticky=N)
+
+        disk_label_frame = LabelFrame(self.disk_tab, width=480, height=240)
+        disk_label_frame.grid(column=0, row=1)
+        disk_label_frame.grid_propagate(0)
+
+        disk_device_label = Label(disk_label_frame, text="Device: ", style="My.TLabel")
+        disk_device_label.grid(column=0, row=1, sticky=W)
+        disk_device_spec = Label(disk_label_frame, text=self.methods["disk"]["Device"], style="Bold.TLabel")
+        disk_device_spec.grid(column=1, row=1, sticky=W, padx=10)
+
+        disk_mount_label = Label(disk_label_frame, text="Mountpoint: ", style="My.TLabel")
+        disk_mount_label.grid(column=0, row=2, sticky=W)
+        disk_mount_spec = Label(disk_label_frame, text=self.methods["disk"]["Mount"], style="Bold.TLabel")
+        disk_mount_spec.grid(column=1, row=2, sticky=W, padx=10)
+
+        disk_fs_label = Label(disk_label_frame, text="Filesystem: ", style="My.TLabel")
+        disk_fs_label.grid(column=0, row=3, sticky=W)
+        disk_fs_spec = Label(disk_label_frame, text=self.methods["disk"]["Filesystem"], style="Bold.TLabel")
+        disk_fs_spec.grid(column=1, row=3, sticky=W, padx=10)
+
+        disk_t_size_label = Label(disk_label_frame, text="Total Size: ", style="My.TLabel")
+        disk_t_size_label.grid(column=0, row=4, sticky=W)
+        disk_t_size_spec = Label(disk_label_frame, text=self.methods["disk"]["Total Size"], style="Bold.TLabel")
+        disk_t_size_spec.grid(column=1, row=4, sticky=W, padx=10)
+
+        disk_used_label = Label(disk_label_frame, text="Used: ", style="My.TLabel")
+        disk_used_label.grid(column=0, row=5, sticky=W)
+        disk_used_spec = Label(disk_label_frame, text=self.methods["disk"]["Used"], style="Bold.TLabel")
+        disk_used_spec.grid(column=1, row=5, sticky=W, padx=10)
+
+        disk_free_label = Label(disk_label_frame, text="Free: ", style="My.TLabel")
+        disk_free_label.grid(column=0, row=6, sticky=W)
+        disk_free_spec = Label(disk_label_frame, text=self.methods["disk"]["Free"], style="Bold.TLabel")
+        disk_free_spec.grid(column=1, row=6, sticky=W, padx=10)
+
+        disk_per_label = Label(disk_label_frame, text="Percentage: ", style="My.TLabel")
+        disk_per_label.grid(column=0, row=7, sticky=W)
+        disk_per_spec = Label(disk_label_frame, text=self.methods["disk"]["Percentage"], style="Bold.TLabel")
+        disk_per_spec.grid(column=1, row=7, sticky=W, padx=10)
+
+        disk_t_read_label = Label(disk_label_frame, text="Total Read: ", style="My.TLabel")
+        disk_t_read_label.grid(column=0, row=8, sticky=W)
+        disk_t_read_spec = Label(disk_label_frame, text=self.methods["disk"]["Total Read"], style="Bold.TLabel")
+        disk_t_read_spec.grid(column=1, row=8, sticky=W, padx=10)
+
+        disk_t_write_label = Label(disk_label_frame, text="Total Write: ", style="My.TLabel")
+        disk_t_write_label.grid(column=0, row=9, sticky=W)
+        disk_t_write_spec = Label(disk_label_frame, text=self.methods["disk"]["Total Write"], style="Bold.TLabel")
+        disk_t_write_spec.grid(column=1, row=9, sticky=W, padx=10)
