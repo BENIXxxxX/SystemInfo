@@ -1,3 +1,4 @@
+from traceback import StackSummary
 import GPUtil
 import psutil
 import platform
@@ -423,3 +424,11 @@ class GUI(object):
         net_t_recv_label.grid(column=0, row=4, sticky=W)
         net_t_recv_spec = Label(net_label_frame, text=self.methods["net"]["Total Bytes Received"], style="Bold.TLabel")
         net_t_recv_spec.grid(column=1, row=4, sticky=W, padx=10)
+
+if __name__ == "__main__":
+    root = Tk()
+    root.title("System Information")
+    icon = PhotoImage(file="icon.png")
+    root.iconphoto(False, icon)
+    GUI(root)
+    root.mainloop()
