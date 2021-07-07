@@ -39,12 +39,12 @@ class SystemScanner(object):
     def cpu_info(self):
         cpu_freq = psutil.cpu_freq()
         data = {
-            "Physical Cores":   psutil.cpu_count(logical=False),
-            "Total Cores":      psutil.cpu_count(logical=True),
-            "Max Frequency":    str(f"{cpu_freq.max:.2f} Mhz"),
-            "Min Frequency":    str(f"{cpu_freq.min:.2f} Mhz"),
+            "Physical Cores":       psutil.cpu_count(logical=False),
+            "Total Cores":          psutil.cpu_count(logical=True),
+            "Max Frequency":        str(f"{cpu_freq.max:.2f} Mhz"),
+            "Min Frequency":        str(f"{cpu_freq.min:.2f} Mhz"),
             "Current Frequency":    str(f"{cpu_freq.current:.2f} Mhz"),
-            "Total Usage":      str(f"{psutil.cpu_percent()}%")
+            "Total Usage":          str(f"{psutil.cpu_percent()}%")
         }
         return data
     
@@ -101,10 +101,10 @@ class SystemScanner(object):
         net_io = psutil.net_io_counters()
         speed = speedtest.Speedtest()
         data = {
-            "Interface": str(interfaces[0]),
-            "Download": str(f"{round(speed.download() / 1_000_000, 2)} Mbps"),
-            "Upload":   str(f"{round(speed.upload() / 1_000_000, 2)} Mbps"),
-            "Total Bytes Sent": str(self.get_size(net_io.bytes_sent)),
+            "Interface":            str(interfaces[0]),
+            "Download":             str(f"{round(speed.download() / 1_000_000, 2)} Mbps"),
+            "Upload":               str(f"{round(speed.upload() / 1_000_000, 2)} Mbps"),
+            "Total Bytes Sent":     str(self.get_size(net_io.bytes_sent)),
             "Total Bytes Received": str(self.get_size(net_io.bytes_recv))
         }
         return data
@@ -118,7 +118,7 @@ class GUI(object):
             "ram":      spec.ram_info(),
             # "gpu":      spec.gpu_info(),
             "disk":     spec.disk_info(),
-            "net":  spec.network_info()
+            "net":      spec.network_info()
         }
 
         frame = Frame(master)
