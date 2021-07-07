@@ -1,4 +1,3 @@
-from traceback import StackSummary
 import GPUtil
 import psutil
 import platform
@@ -44,6 +43,7 @@ class SystemScanner(object):
             "Total Cores":      psutil.cpu_count(logical=True),
             "Max Frequency":    str(f"{cpu_freq.max:.2f} Mhz"),
             "Min Frequency":    str(f"{cpu_freq.min:.2f} Mhz"),
+            "Current Frequency":    str(f"{cpu_freq.current:.2f} Mhz"),
             "Total Usage":      str(f"{psutil.cpu_percent()}%")
         }
         return data
@@ -57,20 +57,20 @@ class SystemScanner(object):
             "Percentage":   str(f"{svmem.percent}%")
         }
         return data
-    
-    def gpu_info(self):
-        gpus = GPUtil.getGPUs()
-        data = {}
-        for gpu in gpus:
-            data["ID"] = gpu.id
-            data["Name"] = gpu.name
-            data["Load"] = f"{gpu.load*100}%"
-            data["Free"] = f"{gpu.memoryFree} MB"
-            data["Used"] = f"{gpu.memoryUsed} MB"
-            data["Total"] = f"{gpu.memoryTotal} MB"
-            data["Temp"] = f"{gpu.temperature} °C"
-            data["UUID"] = gpu.uuid
-        return data
+    # nvidia GPU
+    # def gpu_info(self):
+    #     gpus = GPUtil.getGPUs()
+    #     data = {}
+    #     for gpu in gpus:
+    #         data["ID"] = gpu.id
+    #         data["Name"] = gpu.name
+    #         data["Load"] = f"{gpu.load*100}%"
+    #         data["Free"] = f"{gpu.memoryFree} MB"
+    #         data["Used"] = f"{gpu.memoryUsed} MB"
+    #         data["Total"] = f"{gpu.memoryTotal} MB"
+    #         data["Temp"] = f"{gpu.temperature} °C"
+    #         data["UUID"] = gpu.uuid
+    #     return data
     
     def disk_info(self):
         drive = psutil.disk_partitions()[0]
@@ -116,9 +116,9 @@ class GUI(object):
             "sys":      spec.system_info(),
             "cpu":      spec.cpu_info(),
             "ram":      spec.ram_info(),
-            "gpu":      spec.gpu_info(),
+            # "gpu":      spec.gpu_info(),
             "disk":     spec.disk_info(),
-            "network":  spec.network_info()
+            "net":  spec.network_info()
         }
 
         frame = Frame(master)
@@ -138,9 +138,10 @@ class GUI(object):
         tabControl.add(self.ram_tab, text="RAM")
         tabControl.grid()
 
-        self.gpu_tab = ttk.Frame(tabControl)
-        tabControl.add(self.gpu_tab, text="GPU")
-        tabControl.grid()
+        # nvidia GPU
+        # self.gpu_tab = ttk.Frame(tabControl)
+        # tabControl.add(self.gpu_tab, text="GPU")
+        # tabControl.grid()
 
         self.disk_tab = ttk.Frame(tabControl)
         tabControl.add(self.disk_tab, text="Disk")
@@ -284,52 +285,52 @@ class GUI(object):
         ram_per_spec = Label(ram_label_frame, text=self.methods["ram"]["Percentage"], style="Bold.TLabel")
         ram_per_spec.grid(column=1, row=4, sticky=W, padx=10)
 
-        # GPU Tab
-        gpu_frame_top_label = LabelFrame(self.gpu_tab, width=480, height=50)
-        gpu_frame_top_label.grid(column=0, row=0)
-        gpu_frame_top_label.grid_propagate(0)
+        # GPU Tab (nvidia)
+        # gpu_frame_top_label = LabelFrame(self.gpu_tab, width=480, height=50)
+        # gpu_frame_top_label.grid(column=0, row=0)
+        # gpu_frame_top_label.grid_propagate(0)
 
-        gpu_system_top_label = Label(gpu_frame_top_label, text="GPU", style="Title.TLabel")
-        gpu_system_top_label.grid(column=1, row=0, columnspan=3, sticky=N)
+        # gpu_system_top_label = Label(gpu_frame_top_label, text="GPU", style="Title.TLabel")
+        # gpu_system_top_label.grid(column=1, row=0, columnspan=3, sticky=N)
 
-        gpu_label_frame = LabelFrame(self.gpu_tab, width=480, height=240)
-        gpu_label_frame.grid(column=0, row=1)
-        gpu_label_frame.grid_propagate(0)
+        # gpu_label_frame = LabelFrame(self.gpu_tab, width=480, height=240)
+        # gpu_label_frame.grid(column=0, row=1)
+        # gpu_label_frame.grid_propagate(0)
 
-        gpu_id_label = Label(gpu_label_frame, text="ID: ", style="My.TLabel")
-        gpu_id_label.grid(column=0, row=1, sticky=W)
-        gpu_id_spec = Label(gpu_label_frame, text=self.methods["gpu"]["ID"], style="Bold.TLabel")
-        gpu_id_spec.grid(column=1, row=1, sticky=W, padx=10)
+        # gpu_id_label = Label(gpu_label_frame, text="ID: ", style="My.TLabel")
+        # gpu_id_label.grid(column=0, row=1, sticky=W)
+        # gpu_id_spec = Label(gpu_label_frame, text=self.methods["gpu"]["ID"], style="Bold.TLabel")
+        # gpu_id_spec.grid(column=1, row=1, sticky=W, padx=10)
 
-        gpu_name_label = Label(gpu_label_frame, text="Name: ", style="My.TLabel")
-        gpu_name_label.grid(column=0, row=2, sticky=W)
-        gpu_name_spec = Label(gpu_label_frame, text=self.methods["gpu"]["Name"], style="Bold.TLabel")
-        gpu_name_spec.grid(column=1, row=2, sticky=W, padx=10)
+        # gpu_name_label = Label(gpu_label_frame, text="Name: ", style="My.TLabel")
+        # gpu_name_label.grid(column=0, row=2, sticky=W)
+        # gpu_name_spec = Label(gpu_label_frame, text=self.methods["gpu"]["Name"], style="Bold.TLabel")
+        # gpu_name_spec.grid(column=1, row=2, sticky=W, padx=10)
 
-        gpu_load_label = Label(gpu_label_frame, text="Load: ", style="My.TLabel")
-        gpu_load_label.grid(column=0, row=3, sticky=W)
-        gpu_load_spec = Label(gpu_label_frame, text=self.methods["gpu"]["Load"], style="Bold.TLabel")
-        gpu_load_spec.grid(column=1, row=3, sticky=W, padx=10)
+        # gpu_load_label = Label(gpu_label_frame, text="Load: ", style="My.TLabel")
+        # gpu_load_label.grid(column=0, row=3, sticky=W)
+        # gpu_load_spec = Label(gpu_label_frame, text=self.methods["gpu"]["Load"], style="Bold.TLabel")
+        # gpu_load_spec.grid(column=1, row=3, sticky=W, padx=10)
 
-        gpu_free_label = Label(gpu_label_frame, text="Free: ", style="My.TLabel")
-        gpu_free_label.grid(column=0, row=4, sticky=W)
-        gpu_free_spec = Label(gpu_label_frame, text=self.methods["gpu"]["Free"], style="Bold.TLabel")
-        gpu_free_spec.grid(column=1, row=4, sticky=W, padx=10)
+        # gpu_free_label = Label(gpu_label_frame, text="Free: ", style="My.TLabel")
+        # gpu_free_label.grid(column=0, row=4, sticky=W)
+        # gpu_free_spec = Label(gpu_label_frame, text=self.methods["gpu"]["Free"], style="Bold.TLabel")
+        # gpu_free_spec.grid(column=1, row=4, sticky=W, padx=10)
 
-        gpu_used_label = Label(gpu_label_frame, text="Used: ", style="My.TLabel")
-        gpu_used_label.grid(column=0, row=5, sticky=W)
-        gpu_used_spec = Label(gpu_label_frame, text=self.methods["gpu"]["Used"], style="Bold.TLabel")
-        gpu_used_spec.grid(column=1, row=5, sticky=W, padx=10)
+        # gpu_used_label = Label(gpu_label_frame, text="Used: ", style="My.TLabel")
+        # gpu_used_label.grid(column=0, row=5, sticky=W)
+        # gpu_used_spec = Label(gpu_label_frame, text=self.methods["gpu"]["Used"], style="Bold.TLabel")
+        # gpu_used_spec.grid(column=1, row=5, sticky=W, padx=10)
 
-        gpu_temp_label = Label(gpu_label_frame, text="Temp: ", style="My.TLabel")
-        gpu_temp_label.grid(column=0, row=6, sticky=W)
-        gpu_temp_spec = Label(gpu_label_frame, text=self.methods["gpu"]["Temp"], style="Bold.TLabel")
-        gpu_temp_spec.grid(column=1, row=6, sticky=W, padx=10)
+        # gpu_temp_label = Label(gpu_label_frame, text="Temp: ", style="My.TLabel")
+        # gpu_temp_label.grid(column=0, row=6, sticky=W)
+        # gpu_temp_spec = Label(gpu_label_frame, text=self.methods["gpu"]["Temp"], style="Bold.TLabel")
+        # gpu_temp_spec.grid(column=1, row=6, sticky=W, padx=10)
 
-        gpu_uuid_label = Label(gpu_label_frame, text="UUID: ", style="My.TLabel")
-        gpu_uuid_label.grid(column=0, row=7, sticky=W)
-        gpu_uuid_spec = Label(gpu_label_frame, text=self.methods["gpu"]["UUID"], style="Bold.TLabel")
-        gpu_uuid_spec.grid(column=1, row=7, sticky=W, padx=10)
+        # gpu_uuid_label = Label(gpu_label_frame, text="UUID: ", style="My.TLabel")
+        # gpu_uuid_label.grid(column=0, row=7, sticky=W)
+        # gpu_uuid_spec = Label(gpu_label_frame, text=self.methods["gpu"]["UUID"], style="Bold.TLabel")
+        # gpu_uuid_spec.grid(column=1, row=7, sticky=W, padx=10)
 
         # Disk Tab
         disk_frame_top_label = LabelFrame(self.disk_tab, width=480, height=50)
@@ -350,12 +351,12 @@ class GUI(object):
 
         disk_mount_label = Label(disk_label_frame, text="Mountpoint: ", style="My.TLabel")
         disk_mount_label.grid(column=0, row=2, sticky=W)
-        disk_mount_spec = Label(disk_label_frame, text=self.methods["disk"]["Mount"], style="Bold.TLabel")
+        disk_mount_spec = Label(disk_label_frame, text=self.methods["disk"]["Mountpoint"], style="Bold.TLabel")
         disk_mount_spec.grid(column=1, row=2, sticky=W, padx=10)
 
         disk_fs_label = Label(disk_label_frame, text="Filesystem: ", style="My.TLabel")
         disk_fs_label.grid(column=0, row=3, sticky=W)
-        disk_fs_spec = Label(disk_label_frame, text=self.methods["disk"]["Filesystem"], style="Bold.TLabel")
+        disk_fs_spec = Label(disk_label_frame, text=self.methods["disk"]["File System"], style="Bold.TLabel")
         disk_fs_spec.grid(column=1, row=3, sticky=W, padx=10)
 
         disk_t_size_label = Label(disk_label_frame, text="Total Size: ", style="My.TLabel")
@@ -397,7 +398,7 @@ class GUI(object):
         net_system_top_label.grid(column=1, row=0, columnspan=3, sticky=N)
 
         net_label_frame = LabelFrame(self.network_tab, width=480, height=240)
-        net_label_frame.grid(columnspan=0, row=1)
+        net_label_frame.grid(column=0, row=1)
         net_label_frame.grid_propagate(0)
 
         net_interface_label = Label(net_label_frame, text="Interface: ", style="My.TLabel")
